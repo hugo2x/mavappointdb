@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/project">
+	<Resource name="jdbc/mavappointdb" auth="Container" type="javax.sql.DataSource"
+         maxActive="50" 
+		 maxIdle="10" 
+		 maxWait="100000"
+		 username="root"
+         password="root"
+         driverClassName="com.mysql.jdbc.Driver"
+         url="jdbc:mysql://localhost:3306/mavappointdb"
+    />
+</Context>
