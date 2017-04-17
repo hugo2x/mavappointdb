@@ -75,8 +75,9 @@ public class ScheduleAppointmentServlet extends HttpServlet{
                             }
                         }
                         else{
-                            response.setHeader("Refresh","2; URL=advising");
-                            request.getRequestDispatcher("/waitlist.jsp").forward(request,response);
+                             System.out.println(">>refresh to waitlist");
+                             response.setHeader("Refresh","2; URL=add_to_waitlist");
+                             //request.getRequestDispatcher("/add_to_waitlist.jsp").forward(request,response);
                         }
 		}
 		catch(Exception e){
@@ -96,7 +97,8 @@ public class ScheduleAppointmentServlet extends HttpServlet{
                 //String[] parts = (request.getParameter("start")).split(" ");
 		//String date = parts[3] + "-" + convertDate(parts[1]) + "-" + parts[2];
                 //System.out.println("JEFFS Appointment =" + appointments.size());
-		if(appointments.size() > 1)
+		//if(appointments.size() > 1)
+                if(appointments.size() == 0 || appointments.size() > 0)
                 {
                     return false;
 		}

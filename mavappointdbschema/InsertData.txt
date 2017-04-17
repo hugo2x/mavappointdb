@@ -1,0 +1,9 @@
+INSERT INTO APPOINTMENT_TYPES (USERid,type,duration) VALUES(1,'Gen-Advising',10);
+INSERT INTO APPOINTMENT_TYPES (USERid,type,duration) VALUES(1,'Drop Class',10);
+INSERT INTO APPOINTMENT_TYPES (USERid,type,duration) VALUES(1,'Add Class',10);
+INSERT INTO APPOINTMENT_TYPES (USERid,type,duration) VALUES(1,'Transfer Student',10);
+INSERT INTO APPOINTMENT_TYPES (USERid,type,duration) VALUES(1,'Other',10);
+INSERT INTO ADVISOR_SETTINGS VALUES(1,'Test Adv 1','testadvisor@uta.edu','day');
+INSERT INTO ADVISOR_SETTINGS VALUES(2,'Test Adv 2','testadvisor2@uta.edu','day');
+INSERT INTO ADVISOR_SETTINGS VALUES(3,'Test Adv 3','testadvisor3@uta.edu','day');
+INSERT INTO WAIT_LIST (id,name,email,validated) VALUES(1,'caca','caca@uta.edu',1);

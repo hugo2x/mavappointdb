@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/js/calendar.js</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/db/RDBImpl.java</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/login.jsp</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/db/command/SQLCmd.java</file>
-            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/db/DatabaseManager.java</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/AddToWaitlistServlet.java</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/templates/admin_header.jsp</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/CreateAdvisorServlet.java</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/advising.jsp</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/WEB-INF/classes/uta/mav/appoint/ScheduleAppointmentServlet.java</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/add_to_waitlist.jsp</file>
+            <file>file:/C:/Users/mini-PC-Ironman/workspace/Assignment2_CSE6329/web/create_advisor.jsp</file>
         </group>
     </open-files>
 </project-private>

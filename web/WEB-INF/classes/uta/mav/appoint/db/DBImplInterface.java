@@ -14,6 +14,7 @@ import uta.mav.appoint.login.AdminUser;
 import uta.mav.appoint.login.AdvisorUser;
 import uta.mav.appoint.login.LoginUser;
 import uta.mav.appoint.login.StudentUser;
+import uta.mav.appoint.beans.AddToWaitlistBean;
 
 public interface DBImplInterface {
 	public Boolean cancelAppointment(int id) throws SQLException;
@@ -33,4 +34,5 @@ public interface DBImplInterface {
 	public Appointment getAppointment(String d, String e) throws SQLException;
 	public Boolean createAdvisor(CreateAdvisorBean ca) throws SQLException;	
 	public String addAppointmentType(AdvisorUser user, AppointmentType at) throws SQLException;
+        public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException;
 }

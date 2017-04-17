@@ -14,11 +14,14 @@ import uta.mav.appoint.beans.Appointment;
 import uta.mav.appoint.beans.AppointmentType;
 import uta.mav.appoint.beans.CreateAdvisorBean;
 import uta.mav.appoint.beans.GetSet;
+import uta.mav.appoint.beans.AddToWaitlistBean;
 import uta.mav.appoint.db.command.AddAppointmentType;
 import uta.mav.appoint.db.command.AddTimeSlot;
+import uta.mav.appoint.db.command.AddToWaitlist;
 import uta.mav.appoint.db.command.CheckTimeSlot;
 import uta.mav.appoint.db.command.CheckUser;
 import uta.mav.appoint.db.command.CreateAdvisor;
+import uta.mav.appoint.db.command.AddToWaitlist;
 import uta.mav.appoint.db.command.CreateInitialAdvisorSettings;
 import uta.mav.appoint.db.command.DeleteTimeSlot;
 import uta.mav.appoint.db.command.GetAdvisors;
@@ -34,8 +37,9 @@ import uta.mav.appoint.login.AdvisorUser;
 import uta.mav.appoint.login.LoginUser;
 import uta.mav.appoint.login.StudentUser;
 
-public class RDBImpl implements DBImplInterface{
 
+public class RDBImpl implements DBImplInterface{
+    public static int wait_counter;
 	public Connection connectDB(){
 		try
 	    {
@@ -433,6 +437,24 @@ public class RDBImpl implements DBImplInterface{
 	}
 	}
 	
+        public Boolean AddToWaitlist(AddToWaitlistBean ca){
+            try{
+                wait_counter++;
+		SQLCmd cmd = new AddToWaitlist(wait_counter,ca);
+		cmd.execute();
+		if ((Boolean)cmd.getResult().get(0)){
+                        return true;
+		}
+		else{
+			return false;
+		}
+			
+            }
+            catch(Exception e){
+		return false;
+            }
+	}
+        
 	public String addAppointmentType(AdvisorUser user, AppointmentType at){
 		String msg = null;
 		SQLCmd cmd = new GetUserID(user.getEmail());
