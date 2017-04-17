@@ -11,7 +11,6 @@ import uta.mav.appoint.beans.Appointment;
 import uta.mav.appoint.beans.AppointmentType;
 import uta.mav.appoint.beans.CreateAdvisorBean;
 import uta.mav.appoint.beans.GetSet;
-import uta.mav.appoint.beans.AddToWaitlistBean;
 import uta.mav.appoint.login.AdminUser;
 import uta.mav.appoint.login.AdvisorUser;
 import uta.mav.appoint.login.LoginUser;
@@ -28,7 +27,7 @@ public class DatabaseManager {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    String jdbcUrl = "jdbc:mysql://localhost/mavappointdb";
 	    String userid = "root";
-	    String password = "root";
+	    String password = "pooja";
 	    Connection conn = DriverManager.getConnection(jdbcUrl,userid,password);
 	    return conn;
 	    }
@@ -42,9 +41,6 @@ public class DatabaseManager {
 	public Boolean createAdvisor(CreateAdvisorBean ca) throws SQLException{
 		return imp.createAdvisor(ca);
 	}
-        public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException{
-                return imp.AddToWaitlist(ca);
-        }
 		
 	public LoginUser checkUser(GetSet set) throws SQLException{
 		return imp.checkUser(set);
@@ -53,7 +49,17 @@ public class DatabaseManager {
 	public int addUser(GetSet set) throws SQLException{
 		return imp.addUser(set);
 	}
-	
+	public int flagUser(GetSet set)throws SQLException{
+                          
+             return imp.flagUser(set);
+                
+        }
+        public int updateflagUser(GetSet set)throws SQLException{
+                          
+             return imp.updateflaguser(set);
+                
+        }
+        
 	public ArrayList<String> getAdvisors() throws SQLException{
 		return imp.getAdvisors();
 	}
@@ -107,5 +113,10 @@ public class DatabaseManager {
 	public String addAppointmentType(AdvisorUser user, AppointmentType at) throws SQLException{
 		return imp.addAppointmentType(user, at);
 	}
-}
+
+    public int frgtpassuser(GetSet set)throws SQLException{
+            return imp.frgtpassuser(set);
+        }
+    }
+
 

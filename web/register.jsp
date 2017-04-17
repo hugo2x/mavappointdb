@@ -1,3 +1,6 @@
+
+<%@ page import="net.tanesha.recaptcha.ReCaptcha"%>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
 <%@include file="templates/header.jsp"%>
 	<div class="container">
 	<form action="register" method="post">
@@ -374,7 +377,14 @@
 			 <span id="strength">Type Password</span>
 			 <label for="repeatPassword">Repeat Password</label>
 			 <input type="password" class="form-control" name=repeatPassword>
-                         
+                         <label for="secquestion">Security Question:What is your favourite colour?</label>
+			 <input type="text" class="form-control" name=sec>
+                        <%
+          //ReCaptcha c = ReCaptchaFactory.newReCaptcha("your_public_key", "your_private_key", false);
+          ReCaptcha captcha = ReCaptchaFactory.newReCaptcha("6LerBR0UAAAAAJm55H2Ubxo9XFkjLSLTMpIsRm4d", "6LerBR0UAAAAAJ0goFehATkhuASyqnbV_UmO7rqH", false);
+          out.print(captcha.createRecaptchaHtml(null, null));
+        %>
+      <br/>
 		</div>
 	</div>
 	</div>

@@ -63,6 +63,8 @@
 		}%>
 		</ul>
 		</div>
+                <br/><br/><hr>
+                
 	<form name=addAppt action="schedule" method="post">
 	<div class="modal fade" id="addApptModal" tabindex="-1">
 		<div class="modal-dialog">
@@ -83,7 +85,20 @@
 						Email address: <br><input type="text" name="email" id="email" value="<%= user.getEmail()%>"><br>
 						UTA Student ID: <br><input type="text" name="studentid"> <br>
 						Description: <br><textarea rows=4 columns="10" name="description"></textarea>
-				</div>
+                                                <br/><br/><hr>
+                <tr>
+                        <td>
+                            Notification:
+                            <select name="notification">
+                                <option>Msg Text</option>
+                                <option>Email</option>
+                                <option>No Notification</option>
+                            </select>
+                        </td> 
+                    </tr>
+                    
+                </div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default"
 						data-dismiss="modal"> Close 

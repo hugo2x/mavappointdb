@@ -79,6 +79,7 @@
                         <%= "1".equals(rememberVal.trim()) ? "checked=\"checked\"" : "" %> />
                 </p>
 										<div class="form-group">
+                                                                                    <a href="frgtpass.jsp"> forgot passsword</a>
 											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
 										</div>
 										

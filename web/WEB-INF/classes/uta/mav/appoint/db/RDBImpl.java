@@ -14,14 +14,11 @@ import uta.mav.appoint.beans.Appointment;
 import uta.mav.appoint.beans.AppointmentType;
 import uta.mav.appoint.beans.CreateAdvisorBean;
 import uta.mav.appoint.beans.GetSet;
-import uta.mav.appoint.beans.AddToWaitlistBean;
 import uta.mav.appoint.db.command.AddAppointmentType;
 import uta.mav.appoint.db.command.AddTimeSlot;
-import uta.mav.appoint.db.command.AddToWaitlist;
 import uta.mav.appoint.db.command.CheckTimeSlot;
 import uta.mav.appoint.db.command.CheckUser;
 import uta.mav.appoint.db.command.CreateAdvisor;
-import uta.mav.appoint.db.command.AddToWaitlist;
 import uta.mav.appoint.db.command.CreateInitialAdvisorSettings;
 import uta.mav.appoint.db.command.DeleteTimeSlot;
 import uta.mav.appoint.db.command.GetAdvisors;
@@ -37,16 +34,15 @@ import uta.mav.appoint.login.AdvisorUser;
 import uta.mav.appoint.login.LoginUser;
 import uta.mav.appoint.login.StudentUser;
 
-
 public class RDBImpl implements DBImplInterface{
-    public static int wait_counter;
+
 	public Connection connectDB(){
 		try
 	    {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    String jdbcUrl = "jdbc:mysql://localhost/mavappointdb";
 	    String userid = "root";
-	    String password = "root";
+	    String password = "pooja";
 	    Connection conn = DriverManager.getConnection(jdbcUrl,userid,password);
 	    return conn;
 	    }
@@ -63,7 +59,7 @@ public class RDBImpl implements DBImplInterface{
 	public LoginUser checkUser(GetSet set) throws SQLException{
 		LoginUser user = null;
 		try{
-			SQLCmd cmd = new CheckUser(set.getEmailAddress(), set.getPassword());
+			SQLCmd cmd = new CheckUser(set.getEmailAddress(), set.getPassword(),set.getValidated());
 			cmd.execute();
 			user = (LoginUser)(cmd.getResult()).get(0);
 			
@@ -91,11 +87,13 @@ public class RDBImpl implements DBImplInterface{
 		int check = 0;
 		try{
 		Connection conn = this.connectDB();
-		String command = "insert into user(email,password,role) VALUES(?,?,?)";
+		String command = "insert into user(email,password,role,securityanswer) VALUES(?,?,?,?)";
 		PreparedStatement statement = conn.prepareStatement(command);
 		statement.setString(1,set.getEmailAddress());
 		statement.setString(2,set.getPassword());
 		statement.setString(3,set.getRole());
+                statement.setString(4,set.getSecurity());
+                System.out.println(set.getSecurity());
 		int res = statement.executeUpdate();
 		return res;
 		}
@@ -105,6 +103,60 @@ public class RDBImpl implements DBImplInterface{
 		}
 		
 	}
+        public int flagUser(GetSet set){
+		int check = 0;
+		try{
+		Connection conn = this.connectDB();
+		String command = "insert into flag(email,counter) VALUES(?,?)";
+		PreparedStatement statement = conn.prepareStatement(command);
+		statement.setString(1,set.getEmailAddress());
+		statement.setInt(2,set.getCounter());
+		check=statement.executeUpdate();
+		return check;
+		}
+		catch(Exception e){
+			System.out.println(e);
+                        return 0;
+		
+			
+		}
+            
+	}
+        public int updateflaguser(GetSet set){
+           try
+           { Connection conn = this.connectDB();
+		String command = "update flag set counter=? where email=?";
+                PreparedStatement statement = conn.prepareStatement(command);
+		
+		statement.setInt(1,set.getCounter());
+                statement.setString(2,set.getEmailAddress());
+                System.out.println(set.getPassword());
+                int res = statement.executeUpdate();
+		return res;
+           }
+           catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}
+        }
+        
+        public int frgtpassuser(GetSet set){
+           try{
+               Connection conn = this.connectDB();
+		String command = "update user set password=? where email=?";
+                PreparedStatement statement = conn.prepareStatement(command);
+		
+		statement.setString(1,set.getPassword());
+                statement.setString(2,set.getEmailAddress());
+                System.out.println(set.getPassword());
+                int res = statement.executeUpdate();
+		return res;
+           }
+           catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}
+        }
 		
 	
 	//using command pattern
@@ -173,6 +225,7 @@ public class RDBImpl implements DBImplInterface{
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()){
 				student_id = rs.getInt(1);
+                                System.out.println(student_id);
 			}
 			command = "SELECT userid FROM advisor_settings WHERE advisor_settings.pname=?";
 			statement=conn.prepareStatement(command);
@@ -180,8 +233,10 @@ public class RDBImpl implements DBImplInterface{
 			rs = statement.executeQuery();
 			while(rs.next()){
 				advisor_id = rs.getInt(1);
+                                System.out.println(advisor_id);
 			}
 			//check for slots already taken
+                        System.out.println("increateschedule");
 			command = "SELECT COUNT(*) FROM advising_schedule WHERE userid=? AND advising_date=? AND advising_starttime=? AND advising_endtime=? AND studentid is not null";
 			statement = conn.prepareStatement(command);
 			statement.setInt(1, advisor_id);
@@ -190,6 +245,7 @@ public class RDBImpl implements DBImplInterface{
 			statement.setString(4, a.getAdvisingEndTime());
 			rs = statement.executeQuery();
 			while(rs.next()){
+                            System.out.println(rs.getInt(1));
 				if (rs.getInt(1) < 1){
 					command = "INSERT INTO appointments (id,advisor_userid,student_userid,advising_date,advising_starttime,advising_endtime,appointment_type,studentid,description,student_email)"
 							+"VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -437,24 +493,6 @@ public class RDBImpl implements DBImplInterface{
 	}
 	}
 	
-        public Boolean AddToWaitlist(AddToWaitlistBean ca){
-            try{
-                wait_counter++;
-		SQLCmd cmd = new AddToWaitlist(wait_counter,ca);
-		cmd.execute();
-		if ((Boolean)cmd.getResult().get(0)){
-                        return true;
-		}
-		else{
-			return false;
-		}
-			
-            }
-            catch(Exception e){
-		return false;
-            }
-	}
-        
 	public String addAppointmentType(AdvisorUser user, AppointmentType at){
 		String msg = null;
 		SQLCmd cmd = new GetUserID(user.getEmail());
@@ -463,5 +501,7 @@ public class RDBImpl implements DBImplInterface{
 		cmd.execute();
 		return (String)cmd.getResult().get(0);
 	}
+
+   
 }
 

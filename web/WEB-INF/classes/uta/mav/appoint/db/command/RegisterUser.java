@@ -7,13 +7,15 @@ public class RegisterUser extends SQLCmd{
 	String email;
 	String role;
 	String password;
+        String security;
 	
 	
-	public RegisterUser(String email, String role, String password) {
+	public RegisterUser(String email, String role, String password,String security) {
 		super();
 		this.email = email;
 		this.role = role;
 		this.password = password;
+                this.security=security;
 	}
 
 	@Override
@@ -23,11 +25,12 @@ public class RegisterUser extends SQLCmd{
 
 	@Override
 	public void processResult() {try{
-		String command = "insert user(email,password,role) VALUES(email=?,password=?,role=?)";
+		String command = "insert user(email,password,role,securityanswer) VALUES(email=?,password=?,role=?,securtityanswer=?)";
 		PreparedStatement statement = conn.prepareStatement(command);
 		statement.setString(1,email);
 		statement.setString(2,password);
 		statement.setString(3,role);
+                statement.setString(4,security);
 		res = statement.executeQuery();
 		}
 		catch(Exception e){

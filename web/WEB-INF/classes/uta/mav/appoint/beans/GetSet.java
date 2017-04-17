@@ -17,13 +17,37 @@ public class GetSet implements Serializable{
 	private String emailAddress;
 	private String studentId;
 	private String role;
+
+   private int validated;
+   private int counter;
 	private String name;
 	private String date;
 	private String starttime;
 	private String endtime;
-	/**
-	 * @return the name
-	 */
+        private String security;
+
+        
+	 public int getCounter() {
+        return counter;
+    }
+
+    /**
+     * @return the name
+     */
+    /**
+     * @param name the name to set
+     */
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public String getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(String security) {
+        this.security = security;
+    }
 	public String getName() {
 		return name;
 	}
@@ -120,6 +144,14 @@ public class GetSet implements Serializable{
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+
+    public int getValidated() {
+        return validated;
+    }
+
+    public void setValidated(int validated) {
+        this.validated = validated;
+    }
 	
 	
 }
