@@ -1,0 +1,1 @@
+create table flag(email varchar(40),counter int);
