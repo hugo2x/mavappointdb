@@ -39,12 +39,7 @@ public class DatabaseManager {
 	}	
 	//user login checking, check username and password against database
 	//then return role if a match is found
-        public String GetWaitlist() throws SQLException{
-            return imp.GetWaitlist();
-        }
-	 public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException{
-        return imp.AddToWaitlist(ca);
-    }
+        
 	public Boolean createAdvisor(CreateAdvisorBean ca) throws SQLException{
 		return imp.createAdvisor(ca);
 	}
@@ -56,16 +51,7 @@ public class DatabaseManager {
 	public int addUser(GetSet set) throws SQLException{
 		return imp.addUser(set);
 	}
-	public int flagUser(GetSet set)throws SQLException{
-                          
-             return imp.flagUser(set);
-                
-        }
-        public int updateflagUser(GetSet set)throws SQLException{
-                          
-             return imp.updateflaguser(set);
-                
-        }
+	
         
 	public ArrayList<String> getAdvisors() throws SQLException{
 		return imp.getAdvisors();
@@ -124,6 +110,22 @@ public class DatabaseManager {
     public int frgtpassuser(GetSet set)throws SQLException{
             return imp.frgtpassuser(set);
         }
-    }
+    public int flagUser(GetSet set)throws SQLException{
+                          
+             return imp.flagUser(set);
+                
+        }
+        public int updateflagUser(GetSet set)throws SQLException{
+                          
+             return imp.updateflaguser(set);
+                
+        }
+    public String GetWaitlist() throws SQLException{
+            return imp.GetWaitlist();
+        }
+	 public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException{
+        return imp.AddToWaitlist(ca);
+         }
+ }
 
 

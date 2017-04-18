@@ -107,62 +107,7 @@ public class RDBImpl implements DBImplInterface{
 		}
 		
 	}
-        public int flagUser(GetSet set){
-		int check = 0;
-		try{
-		Connection conn = this.connectDB();
-		String command = "insert into flag(email,counter) VALUES(?,?)";
-		PreparedStatement statement = conn.prepareStatement(command);
-		statement.setString(1,set.getEmailAddress());
-		statement.setInt(2,set.getCounter());
-		check=statement.executeUpdate();
-		return check;
-		}
-		catch(Exception e){
-			System.out.println(e);
-                        return 0;
-		
-			
-		}
-            
-	}
-        public int updateflaguser(GetSet set){
-           try
-           { Connection conn = this.connectDB();
-		String command = "update flag set counter=? where email=?";
-                PreparedStatement statement = conn.prepareStatement(command);
-		
-		statement.setInt(1,set.getCounter());
-                statement.setString(2,set.getEmailAddress());
-                System.out.println(set.getPassword());
-                int res = statement.executeUpdate();
-		return res;
-           }
-           catch(Exception e){
-			System.out.println(e);
-			return 0;
-		}
-        }
         
-        public int frgtpassuser(GetSet set){
-           try{
-               Connection conn = this.connectDB();
-		String command = "update user set password=? where email=? and security=?";
-                PreparedStatement statement = conn.prepareStatement(command);
-		
-		statement.setString(1,set.getPassword());
-                statement.setString(2,set.getEmailAddress());
-                statement.setString(3,set.getSecurity());
-                System.out.println(set.getPassword());
-                int res = statement.executeUpdate();
-		return res;
-           }
-           catch(Exception e){
-			System.out.println(e);
-			return 0;
-		}
-        }
-		
 	
 	//using command pattern
 	public ArrayList<String> getAdvisors() throws SQLException{
@@ -506,6 +451,64 @@ public class RDBImpl implements DBImplInterface{
 		cmd.execute();
 		return (String)cmd.getResult().get(0);
 	}
+        
+        public int frgtpassuser(GetSet set){
+           try{
+               Connection conn = this.connectDB();
+		String command = "update user set password=? where email=? and security=?";
+                PreparedStatement statement = conn.prepareStatement(command);
+		
+		statement.setString(1,set.getPassword());
+                statement.setString(2,set.getEmailAddress());
+                statement.setString(3,set.getSecurity());
+                System.out.println(set.getPassword());
+                int res = statement.executeUpdate();
+		return res;
+           }
+           catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}
+        }
+        public int flagUser(GetSet set){
+		int check = 0;
+		try{
+		Connection conn = this.connectDB();
+		String command = "insert into flag(email,counter) VALUES(?,?)";
+		PreparedStatement statement = conn.prepareStatement(command);
+		statement.setString(1,set.getEmailAddress());
+		statement.setInt(2,set.getCounter());
+		check=statement.executeUpdate();
+		return check;
+		}
+		catch(Exception e){
+			System.out.println(e);
+                        return 0;
+		
+			
+		}
+            
+	}
+        public int updateflaguser(GetSet set){
+           try
+           { Connection conn = this.connectDB();
+		String command = "update flag set counter=? where email=?";
+                PreparedStatement statement = conn.prepareStatement(command);
+		
+		statement.setInt(1,set.getCounter());
+                statement.setString(2,set.getEmailAddress());
+                System.out.println(set.getPassword());
+                int res = statement.executeUpdate();
+		return res;
+           }
+           catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}
+        }
+        
+        
+		
 	public Boolean AddToWaitlist(AddToWaitlistBean ca){
         try{
             wait_counter++;

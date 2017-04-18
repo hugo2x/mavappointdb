@@ -24,10 +24,6 @@ public interface DBImplInterface {
 	public Boolean createAppointment(Appointment a, String email) throws SQLException;
 	public ArrayList<TimeSlotComponent> getAdvisorSchedule(String name) throws SQLException;
 	public int addUser(GetSet set) throws SQLException;
-    public int frgtpassuser(GetSet set)throws SQLException;
-    public int flagUser(GetSet set)throws SQLException;
-    public int updateflaguser(GetSet set)throws SQLException;
-     
 	public ArrayList<String> getAdvisors() throws SQLException;
 	public LoginUser checkUser(GetSet set) throws SQLException;
 	public String addTimeSlot(AllocateTime at) throws SQLException;
@@ -38,6 +34,9 @@ public interface DBImplInterface {
 	public Appointment getAppointment(String d, String e) throws SQLException;
 	public Boolean createAdvisor(CreateAdvisorBean ca) throws SQLException;	
 	public String addAppointmentType(AdvisorUser user, AppointmentType at) throws SQLException;
+        public int frgtpassuser(GetSet set)throws SQLException;
+        public int flagUser(GetSet set)throws SQLException;
+        public int updateflaguser(GetSet set)throws SQLException;
 	public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException;
         public String GetWaitlist() throws SQLException;
 }

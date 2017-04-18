@@ -55,7 +55,7 @@ public class AddToWaitlistServlet extends HttpServlet{
 			AddToWaitlistBean ca = new AddToWaitlistBean();
 			ca.setEmail(request.getParameter("emailAddress"));
 			ca.setPname(request.getParameter("pname"));
-                        dbm.AddToWaitlist(ca);
+                        Boolean AddToWaitlistTemp = dbm.AddToWaitlist(ca);
 			response.setContentType("text/plain");
 			response.setHeader("Cache-Control", "no-cache");
 			response.setHeader("Pragma", "no-cache");
