@@ -1,4 +1,4 @@
-<p align="center"><jsp:include page='<%=(String) request.getAttribute("includeHeader")%>' />
+<%@include file="templates/student_header.jsp"%> <p align="center">
 	<label><font color="#e67e22" size="5"> Add to Waitlist </font></label>
 			
 	<form action="add_to_waitlist" method="post" name="waitlist_form" onsubmit="return false;">

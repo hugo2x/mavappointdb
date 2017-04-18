@@ -90,6 +90,7 @@ public class CheckUser extends SQLCmd{
                     user = new FacultyUser(email);
                     }
                     }
+                    System.out.println(">here");
                     result.add(user);
                    
 			} 

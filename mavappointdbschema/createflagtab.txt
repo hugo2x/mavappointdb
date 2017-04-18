@@ -1,1 +1,15 @@
+alter table user add security varchar(50);
+alter table appointments modify column student_email varchar(40);
 create table flag(email varchar(40),counter int);
+INSERT INTO flag (email,counter) VALUES('testadvisor@uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('testadvisor2@uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('testadvisor3@uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('teststudent@mavs.uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('teststudent2@mavs.uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('teststudent3@mavs.uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('teststudent4@mavs.uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('teststudent5@mavs.uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('testadmin@uta.edu',0);
+INSERT INTO flag (email,counter) VALUES('testfaculty@uta.edu',0);
+INSERT INTO USER (email,password,role,validated) VALUES('jeffreyswilliams@mavs.uta.edu','test1234','student',1);
+INSERT INTO flag (email,counter) VALUES('jeffreyswilliams@mavs.uta.edu',0);

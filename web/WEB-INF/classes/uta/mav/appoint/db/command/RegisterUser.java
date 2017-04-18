@@ -25,7 +25,7 @@ public class RegisterUser extends SQLCmd{
 
 	@Override
 	public void processResult() {try{
-		String command = "insert user(email,password,role,securityanswer) VALUES(email=?,password=?,role=?,securtityanswer=?)";
+		String command = "insert user(email,password,role,security) VALUES(email=?,password=?,role=?,security=?)";
 		PreparedStatement statement = conn.prepareStatement(command);
 		statement.setString(1,email);
 		statement.setString(2,password);

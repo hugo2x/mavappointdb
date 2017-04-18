@@ -19,7 +19,7 @@
 			 placeholder="firstname.lastname@mavs.uta.edu">  
                          <label for="userid">New Password</label>
 			 <input type="password" class="form-control" name=pass>
-                         <label for="userid">Security Question: What is your favourite colour?</label>
+                         <label for="userid">Security Question: What is your favorite color?</label>
                          <input type="text" class="form-control" name=sec>
               
 		</div>

@@ -14,6 +14,7 @@ import uta.mav.appoint.beans.Appointment;
 import uta.mav.appoint.beans.AppointmentType;
 import uta.mav.appoint.beans.CreateAdvisorBean;
 import uta.mav.appoint.beans.GetSet;
+import uta.mav.appoint.beans.AddToWaitlistBean;
 import uta.mav.appoint.db.command.AddAppointmentType;
 import uta.mav.appoint.db.command.AddTimeSlot;
 import uta.mav.appoint.db.command.CheckTimeSlot;
@@ -26,7 +27,9 @@ import uta.mav.appoint.db.command.GetAppointment;
 import uta.mav.appoint.db.command.GetUserID;
 import uta.mav.appoint.db.command.RegisterUser;
 import uta.mav.appoint.db.command.SQLCmd;
+import uta.mav.appoint.db.command.AddToWaitlist;
 import uta.mav.appoint.db.command.UpdateAppointment;
+import uta.mav.appoint.db.command.GetWaitlist;
 import uta.mav.appoint.flyweight.TimeSlotFlyweightFactory;
 import uta.mav.appoint.helpers.TimeSlotHelpers;
 import uta.mav.appoint.login.AdminUser;
@@ -35,14 +38,15 @@ import uta.mav.appoint.login.LoginUser;
 import uta.mav.appoint.login.StudentUser;
 
 public class RDBImpl implements DBImplInterface{
-
+	public static int wait_counter;
+	
 	public Connection connectDB(){
 		try
 	    {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    String jdbcUrl = "jdbc:mysql://localhost/mavappointdb";
 	    String userid = "root";
-	    String password = "pooja";
+	    String password = "root";
 	    Connection conn = DriverManager.getConnection(jdbcUrl,userid,password);
 	    return conn;
 	    }
@@ -87,7 +91,7 @@ public class RDBImpl implements DBImplInterface{
 		int check = 0;
 		try{
 		Connection conn = this.connectDB();
-		String command = "insert into user(email,password,role,securityanswer) VALUES(?,?,?,?)";
+		String command = "insert into user(email,password,role,security) VALUES(?,?,?,?)";
 		PreparedStatement statement = conn.prepareStatement(command);
 		statement.setString(1,set.getEmailAddress());
 		statement.setString(2,set.getPassword());
@@ -143,11 +147,12 @@ public class RDBImpl implements DBImplInterface{
         public int frgtpassuser(GetSet set){
            try{
                Connection conn = this.connectDB();
-		String command = "update user set password=? where email=?";
+		String command = "update user set password=? where email=? and security=?";
                 PreparedStatement statement = conn.prepareStatement(command);
 		
 		statement.setString(1,set.getPassword());
                 statement.setString(2,set.getEmailAddress());
+                statement.setString(3,set.getSecurity());
                 System.out.println(set.getPassword());
                 int res = statement.executeUpdate();
 		return res;
@@ -501,7 +506,30 @@ public class RDBImpl implements DBImplInterface{
 		cmd.execute();
 		return (String)cmd.getResult().get(0);
 	}
-
+	public Boolean AddToWaitlist(AddToWaitlistBean ca){
+        try{
+            wait_counter++;
+			SQLCmd cmd = new AddToWaitlist(wait_counter,ca);
+			cmd.execute();
+			
+                            return true;
+				
+        }
+        catch(Exception e){
+			return false;
+        }
+	}
+        public String GetWaitlist(){
+            try{
+                        GetWaitlist waity = new GetWaitlist();
+			SQLCmd cmd = waity;
+			cmd.execute();
+                        return waity.getOutput();
+            }
+                catch(Exception e){
+			return "Error on Waitlist DB";
+                }
+	}
    
 }
 

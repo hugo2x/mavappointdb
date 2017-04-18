@@ -15,6 +15,7 @@ import uta.mav.appoint.login.AdminUser;
 import uta.mav.appoint.login.AdvisorUser;
 import uta.mav.appoint.login.LoginUser;
 import uta.mav.appoint.login.StudentUser;
+import uta.mav.appoint.beans.AddToWaitlistBean;
 
 
 public class DatabaseManager {
@@ -27,7 +28,7 @@ public class DatabaseManager {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    String jdbcUrl = "jdbc:mysql://localhost/mavappointdb";
 	    String userid = "root";
-	    String password = "pooja";
+	    String password = "root";
 	    Connection conn = DriverManager.getConnection(jdbcUrl,userid,password);
 	    return conn;
 	    }
@@ -38,6 +39,12 @@ public class DatabaseManager {
 	}	
 	//user login checking, check username and password against database
 	//then return role if a match is found
+        public String GetWaitlist() throws SQLException{
+            return imp.GetWaitlist();
+        }
+	 public Boolean AddToWaitlist(AddToWaitlistBean ca) throws SQLException{
+        return imp.AddToWaitlist(ca);
+    }
 	public Boolean createAdvisor(CreateAdvisorBean ca) throws SQLException{
 		return imp.createAdvisor(ca);
 	}

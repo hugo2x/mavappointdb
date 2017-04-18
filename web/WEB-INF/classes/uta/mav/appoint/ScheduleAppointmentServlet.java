@@ -3,6 +3,7 @@ package uta.mav.appoint;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -76,7 +77,7 @@ public class ScheduleAppointmentServlet extends HttpServlet{
                         }
                         else{
                              System.out.println(">>refresh to waitlist");
-                             response.setHeader("Refresh","2; URL=add_to_waitlist");
+                             response.setHeader("Refresh","2; URL=add_to_waitlist.jsp");
                              //request.getRequestDispatcher("/add_to_waitlist.jsp").forward(request,response);
                         }
 		}
@@ -97,8 +98,7 @@ public class ScheduleAppointmentServlet extends HttpServlet{
                 //String[] parts = (request.getParameter("start")).split(" ");
 		//String date = parts[3] + "-" + convertDate(parts[1]) + "-" + parts[2];
                 //System.out.println("JEFFS Appointment =" + appointments.size());
-		//if(appointments.size() > 1)
-                if(appointments.size() == 0 || appointments.size() > 0)
+		if(appointments.size() >= 1)
                 {
                     return false;
 		}
